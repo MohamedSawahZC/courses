@@ -6,6 +6,7 @@ import GetAll from '../helpers/get_all'
 import { Request, Response } from 'express'
 import bcrypt from 'bcrypt'
 import GenerateToken from '../helpers/generate_token'
+import SanitizeUser from '../sanitizers/user_sanitizer'
 
 // @desc Login User
 // @route POST /api/v1/User
@@ -22,7 +23,7 @@ const LoginUser = asyncHandler(async (req: Request, res: Response, next) => {
   //5) Send response to the client side
   res.status(200).json({
     status: req.t('successStatus'),
-    data: user,
+    data: SanitizeUser(user),
     token: GenerateToken(user._id),
   })
 })
