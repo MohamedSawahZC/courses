@@ -70,13 +70,18 @@ class ApiFeatures {
     if (this.queryString.keyword) {
       let query: any = {}
 
-      if (modelName === 'Product') {
+      if (modelName === 'Course') {
         query.$or = [
           { title: { $regex: this.queryString.keyword, $options: 'i' } },
           { description: { $regex: this.queryString.keyword, $options: 'i' } },
         ]
+      } else if ((modelName = 'User')) {
+        query.$or = [
+          { name: { $regex: this.queryString.keyword, $options: 'i' } },
+          { email: { $regex: this.queryString.keyword, $options: 'i' } },
+        ]
       } else {
-        query = { name: { $regex: this.queryString.keyword, $options: 'i' } }
+        query = { title: { $regex: this.queryString.keyword, $options: 'i' } }
       }
 
       this.mongooseQuery = this.mongooseQuery.find(query)
@@ -86,7 +91,7 @@ class ApiFeatures {
   paginate(countDocuments: any) {
     //2) Pagination
     const page = this.queryString.page * 1 || 1
-    const limit = this.queryString.limit * 1 || 5
+    const limit = this.queryString.limit * 1 || 15
     const skip = (page - 1) * limit
     const endIndex = page * limit
     //Pagination results

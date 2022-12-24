@@ -16,6 +16,6 @@ const GetUser = GetOne(User)
 // @desc Get User
 // @route Get /api/v1/User
 // @access Public/user
-const GetAllUser = GetAll(User)
+const GetAllUser = GetAll(User, 'User')
 
 export { CreateUser, GetUser, GetAllUser }

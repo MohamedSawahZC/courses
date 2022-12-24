@@ -12,6 +12,8 @@ class Config {
   static DATABASE = Database.Development
   static BASEURL = BaseURL.Development
   static VERSION = 'V1'
+  static SECRET_KEY: string = process.env.SECRET_KEY || 'secretkey-default'
+  static JWT_EXPIRE_TIME = process.env.JWT_EXPIRE_TIME
 }
 
 export default Config
