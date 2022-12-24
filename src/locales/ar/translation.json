@@ -4,5 +4,7 @@
   "successStatus": "نجح",
   "manyRequests": "هنا طلبات كثيرة من جهازك يرجي المحاولة مرة اخري بعد 15 دقيقة",
   "createMessage": "تم انشاء {{name}} جديد",
-  "errorNotFoundId": "لا يوجد {{name}} بهذا الـ {{id}}"
+  "errorNotFoundId": "لا يوجد {{name}} بهذا الـ {{id}}",
+  "unauthorized": "غير مسموح لك بالوصول لهذا",
+  "loginError": "خطأ في البريد الالكتروني او كلمة السر"
 }

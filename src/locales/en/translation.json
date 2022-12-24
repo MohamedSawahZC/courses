@@ -4,5 +4,7 @@
   "manyRequests": "Too many request this IP, please try again after an 15min",
   "createMessage": "{{name}} created Successfully",
   "successStatus": "Success",
-  "errorNotFoundId": "No {{name}} found with this {{id}}"
+  "errorNotFoundId": "No {{name}} found with this {{id}}",
+  "unauthorized": "You are not authorized to access this",
+  "loginError": "Invalid username or password"
 }
