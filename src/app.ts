@@ -14,7 +14,6 @@ import mongoSanitize from 'express-mongo-sanitize'
 import SwaggerUi from 'swagger-ui-express'
 import SwaggerConfig from '../swagger.json'
 import routes from './routes'
-
 //@desc Express instance
 const app: Express = express()
 
@@ -23,7 +22,9 @@ i18next
   .use(Backend)
   .use(middleware.LanguageDetector)
   .init({
-    fallbackLng: 'ar',
+    fallbackLng: 'en',
+    preload: ['en', 'ar'],
+    supportedLngs: ['en', 'ar'],
     backend: {
       loadPath: __dirname + '/locales/{{lng}}/translation.json',
     },
@@ -65,8 +66,8 @@ app.use(`/api/${Config.VERSION}`, routes)
 //@desc Handle invalid end points requests
 app.all('*', (req: Request, res: Response) => {
   res.status(404).json({
-    status: req.t('errorStatus'),
-    message: req.t('error404'),
+    status: i18next.t('errorStatus'),
+    message: i18next.t('error404'),
   })
 })
 

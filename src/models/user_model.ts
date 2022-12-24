@@ -1,5 +1,5 @@
 import { Schema, model } from 'mongoose'
-import bcrypt from 'bcrypt'
+import { default as bcrypt } from 'bcrypt'
 import IUser from '../interfaces/user_interface'
 import Role from '../interfaces/role_interface'
 
@@ -14,15 +14,18 @@ const userSchema = new Schema<IUser>({
   password: { type: String, required: true },
 })
 
-//@desc Create mongoose model
-const User = model<IUser>('User', userSchema)
-
 //@desc Handle presave password change to encrypted
 userSchema.pre('save', async function (next) {
-  if (!this.isModified('password')) return next()
-  // Hashing user password
-  this.password = await bcrypt.hash(this.password, 12)
-  next()
+  if (!this.isModified('password')) {
+    return next()
+  } else {
+    //@desc Hashing user password
+    this.password = await bcrypt.hash(this.password, 12)
+    next()
+  }
 })
+
+//@desc Create mongoose model
+const User = model<IUser>('User', userSchema)
 
 export default User
