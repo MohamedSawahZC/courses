@@ -1,0 +1,5 @@
+{
+  "error404": "Error 404 page not found",
+  "errorStatus": "Error",
+  "manyRequests": "Too many request this IP, please try again after an 15min"
+}
