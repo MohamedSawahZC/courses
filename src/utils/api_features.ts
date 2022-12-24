@@ -107,3 +107,5 @@ class ApiFeatures {
     return this
   }
 }
+
+export default ApiFeatures
