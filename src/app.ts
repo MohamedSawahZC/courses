@@ -66,8 +66,8 @@ app.use(`/api/${Config.VERSION}`, routes)
 //@desc Handle invalid end points requests
 app.all('*', (req: Request, res: Response) => {
   res.status(404).json({
-    status: i18next.t('errorStatus'),
-    message: i18next.t('error404'),
+    status: req.t('errorStatus'),
+    message: req.t('error404'),
   })
 })
 

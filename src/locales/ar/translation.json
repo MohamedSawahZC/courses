@@ -1,7 +1,8 @@
 {
   "error404": "خطأ 404 غير موجود",
   "errorStatus": "خطأ",
-  "successStatus":"نجح",
+  "successStatus": "نجح",
   "manyRequests": "هنا طلبات كثيرة من جهازك يرجي المحاولة مرة اخري بعد 15 دقيقة",
-  "createMessage": "تم انشاء {{name}} جديد"
+  "createMessage": "تم انشاء {{name}} جديد",
+  "errorNotFoundId": "لا يوجد {{name}} بهذا الـ {{id}}"
 }
