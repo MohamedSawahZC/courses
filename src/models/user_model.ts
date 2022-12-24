@@ -12,6 +12,7 @@ const userSchema = new Schema<IUser>({
   image: { type: String, required: true },
   phone: { type: String, required: true },
   password: { type: String, required: true },
+  courses: [{ type: Schema.Types.ObjectId, ref: 'Course' }],
 })
 
 //@desc Handle presave password change to encrypted
