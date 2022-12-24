@@ -1,16 +1,17 @@
 import { Schema, model } from 'mongoose'
 import bcrypt from 'bcrypt'
+import IUser from '../interfaces/user_interface'
+import Role from '../interfaces/role_interface'
 
 //@desc Create mongoose schema
 
 const userSchema = new Schema<IUser>({
   name: { type: String, required: true },
   email: { type: String, required: true },
-  role: {
-    default: Role.user,
-  },
+  role: { type: String, enum: Role, default: Role.user },
   image: { type: String, required: true },
   phone: { type: String, required: true },
+  password: { type: String, required: true },
 })
 
 //@desc Create mongoose model

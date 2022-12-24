@@ -1,3 +1,5 @@
+import Role from './role_interface'
+
 interface IUser {
   name: string
   email: string
@@ -6,3 +8,5 @@ interface IUser {
   password: string
   role: Role
 }
+
+export default IUser
