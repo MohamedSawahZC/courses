@@ -6,5 +6,6 @@
   "successStatus": "Success",
   "errorNotFoundId": "No {{name}} found with this {{id}}",
   "unauthorized": "You are not authorized to access this",
-  "loginError": "Invalid username or password"
+  "loginError": "Invalid username or password",
+  "denied": "You're not allowed to access this"
 }
