@@ -1,5 +1,6 @@
 import express from 'express'
 import {
+  AddCourseToUser,
   ChangeUserPassword,
   CreateUser,
   DeleteUser,
@@ -13,6 +14,7 @@ import ResizeImages from '../../helpers/image_resizer'
 import AllowedTo from '../../middleware/authorization_permision'
 import Protect from '../../middleware/auth_checker'
 import UploadSingleImage from '../../middleware/upload_image'
+import AddCourseToUserMiddleware from '../../validators/user/add_course_to_user'
 import ChangeUserPasswordMiddleware from '../../validators/user/change_password'
 import CreateUserMiddleware from '../../validators/user/create_user'
 import IdUserValidator from '../../validators/user/id_user'
@@ -39,7 +41,7 @@ UserRouter.route('/:id')
   .put(GeneralUploader, ResizeImages('users'), UpdateUserMiddleware, UpdateUser)
   .put(ChangeUserPasswordMiddleware, ChangeUserPassword)
   .delete(Protect, AllowedTo('admin'), IdUserValidator, DeleteUser)
-
+UserRouter.post('/add/:id', AddCourseToUserMiddleware, AddCourseToUser)
 // User login ("auth")
 UserRouter.post('/login', LoginUser)
 

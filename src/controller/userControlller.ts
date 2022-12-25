@@ -61,6 +61,17 @@ const GetUser = GetOne(User)
 // @access Protected/admin
 const GetAllUser = GetAll(User, 'User')
 
+// @desc Add Course to User
+// @route POST /api/v1/User
+// @access Protected/admin
+const AddCourseToUser = asyncHandler(async (req: any, res, next) => {
+  const { id } = req.params.id
+  const { course } = req.body.course
+  const user = await User.findById(id)
+  user?.courses.push(course)
+  await user?.save()
+})
+
 export {
   CreateUser,
   GetUser,
@@ -69,4 +80,5 @@ export {
   UpdateUser,
   ChangeUserPassword,
   DeleteUser,
+  AddCourseToUser,
 }
