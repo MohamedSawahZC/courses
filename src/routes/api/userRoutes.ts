@@ -38,7 +38,7 @@ UserRouter.route('/:id')
   .get(IdUserValidator, GetUser)
   .put(GeneralUploader, ResizeImages('users'), UpdateUserMiddleware, UpdateUser)
   .put(ChangeUserPasswordMiddleware, ChangeUserPassword)
-  .delete(IdUserValidator, DeleteUser)
+  .delete(Protect, AllowedTo('admin'), IdUserValidator, DeleteUser)
 
 // User login ("auth")
 UserRouter.post('/login', LoginUser)
