@@ -12,7 +12,9 @@ import SanitizeUser from '../sanitizers/user_sanitizer'
 // @route POST /api/v1/User
 // @access Public/user
 const LoginUser = asyncHandler(async (req: Request, res: Response, next) => {
+  //1) Find User
   const user = await User.findOne({ email: req.body.email })
+  //2) Check if there is a user or invalid password
   if (!user || !(await bcrypt.compareSync(req.body.password, user.password))) {
     res.status(401).json({
       status: req.t('errorStatus'),
@@ -20,7 +22,7 @@ const LoginUser = asyncHandler(async (req: Request, res: Response, next) => {
     })
     return
   }
-  //5) Send response to the client side
+  //3) Send response to the client side
   res.status(200).json({
     status: req.t('successStatus'),
     data: SanitizeUser(user),

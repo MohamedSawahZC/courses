@@ -3,6 +3,7 @@ import asyncHandler from 'express-async-handler'
 import SetImageUrl from './set_image_url'
 import express, { Express, Request, Response } from 'express'
 import GenerateToken from './generate_token'
+import SanitizeUser from '../sanitizers/user_sanitizer'
 
 //1) Method create document
 const CreateOne = (Model: any) =>
@@ -15,10 +16,10 @@ const CreateOne = (Model: any) =>
         message: req.t('createMessage', {
           name: model.collection.collectionName,
         }),
-        data: model,
-        token:GenerateToken(model._id),
+        data: SanitizeUser(model),
+        token: GenerateToken(model._id),
       })
-    }else{
+    } else {
       res.status(201).json({
         status: req.t('successStatus'),
         message: req.t('createMessage', {
@@ -27,7 +28,6 @@ const CreateOne = (Model: any) =>
         data: model,
       })
     }
-
   })
 
 export default CreateOne
