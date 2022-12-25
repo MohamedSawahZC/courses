@@ -5,7 +5,7 @@ import { v4 as uuid } from 'uuid'
 
 const ResizeImages = (collectionName: string) =>
   asyncHandler(async (req, res, next) => {
-    const filename = `user-${uuid()}-${Date.now()}.jpeg`
+    const filename = `${collectionName}-${uuid()}-${Date.now()}`
     if (req.file) {
       const ext = req.file.mimetype.split('/')[1]
       await sharp(req.file.buffer).toFile(

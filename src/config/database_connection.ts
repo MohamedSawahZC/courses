@@ -8,7 +8,7 @@ const DatabaseConnect = () => {
   mongoose
     .connect(URI)
     .then((result) => {
-      console.log(`📅 Mongoose connected 📅`)
+      console.log(`📅 Database connected 📅`)
     })
     .catch((e) => {
       console.log(e)
