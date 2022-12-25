@@ -18,6 +18,7 @@ const UserRouter = express.Router()
 
 //@desc Our routes
 
+//Get All , Create User (Register)
 UserRouter.route('/')
   .post(
     GeneralUploader,
@@ -26,7 +27,11 @@ UserRouter.route('/')
     CreateUser
   )
   .get(Protect, AllowedTo('admin'), GetAllUser)
+
+//Get one user , Update user
 UserRouter.route('/:id').get(GetUserValidator, GetUser)
+
+// User login ("auth")
 UserRouter.post('/login', LoginUser)
 
 export default UserRouter

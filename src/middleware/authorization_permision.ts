@@ -9,9 +9,10 @@ const AllowedTo = (...roles: any[]) =>
         status: req.t('errorStatus'),
         message: req.t('denied'),
       })
+      return
+    } else {
+      next()
     }
-
-    next()
   })
 
 export default AllowedTo
