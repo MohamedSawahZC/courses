@@ -1,17 +1,21 @@
 import express from 'express'
 import {
+  ChangeUserPassword,
   CreateUser,
   GetAllUser,
   GetUser,
   LoginUser,
+  UpdateUser,
 } from '../../controller/userControlller'
 import GeneralUploader from '../../helpers/general_image_uploader'
 import ResizeImages from '../../helpers/image_resizer'
 import AllowedTo from '../../middleware/authorization_permision'
 import Protect from '../../middleware/auth_checker'
 import UploadSingleImage from '../../middleware/upload_image'
+import ChangeUserPasswordMiddleware from '../../validators/user/change_password'
 import CreateUserMiddleware from '../../validators/user/create_user'
-import GetUserValidator from '../../validators/user/get_user'
+import IdUserValidator from '../../validators/user/id_user'
+import UpdateUserMiddleware from '../../validators/user/update_user'
 
 //@desc Initialize our router
 const UserRouter = express.Router()
@@ -29,7 +33,10 @@ UserRouter.route('/')
   .get(Protect, AllowedTo('admin'), GetAllUser)
 
 //Get one user , Update user
-UserRouter.route('/:id').get(GetUserValidator, GetUser)
+UserRouter.route('/:id')
+  .get(IdUserValidator, GetUser)
+  .put(GeneralUploader, ResizeImages('users'), UpdateUserMiddleware, UpdateUser)
+  .put(ChangeUserPasswordMiddleware, ChangeUserPassword)
 
 // User login ("auth")
 UserRouter.post('/login', LoginUser)

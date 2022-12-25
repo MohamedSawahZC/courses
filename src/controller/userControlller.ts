@@ -7,6 +7,7 @@ import { Request, Response } from 'express'
 import bcrypt from 'bcrypt'
 import GenerateToken from '../helpers/generate_token'
 import SanitizeUser from '../sanitizers/user_sanitizer'
+import UpdateOne from '../helpers/update_one'
 
 // @desc Login User
 // @route POST /api/v1/User
@@ -30,11 +31,20 @@ const LoginUser = asyncHandler(async (req: Request, res: Response, next) => {
   })
 })
 
+// @desc Update Password to User
+// @route PUT /api/v1/User
+// @access Public/user
+const ChangeUserPassword = UpdateOne(User, true)
+
 // @desc Create User
 // @route POST /api/v1/User
 // @access Public/user
 const CreateUser = CreateOne(User)
 
+// @desc Update User
+// @route PUT /api/v1/User/:id
+// @access Public/user
+const UpdateUser = UpdateOne(User)
 // @desc Get User
 // @route Get /api/v1/User/:id
 // @access Public/user
@@ -42,7 +52,14 @@ const GetUser = GetOne(User)
 
 // @desc Get User
 // @route Get /api/v1/User
-// @access Public/user
+// @access Protected/admin
 const GetAllUser = GetAll(User, 'User')
 
-export { CreateUser, GetUser, GetAllUser, LoginUser }
+export {
+  CreateUser,
+  GetUser,
+  GetAllUser,
+  LoginUser,
+  UpdateUser,
+  ChangeUserPassword,
+}

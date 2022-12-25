@@ -2,9 +2,19 @@ import asyncHandler from 'express-async-handler'
 import SetImageUrl from './set_image_url'
 import { Request, Response } from 'express'
 
-exports.UpdateOne = (Model: any) =>
+const UpdateOne = (Model: any, password?: Boolean) =>
   asyncHandler(async (req, res, next) => {
-    const document = await Model.findByIdAndUpdate(req.params.id, req.body, {
+    let document
+    if (Model.collection.collectionName == 'users' && password == true) {
+      document = await Model.findByIdAndUpdate(
+        req.params.id,
+        req.body.password,
+        {
+          new: true,
+        }
+      )
+    }
+    document = await Model.findByIdAndUpdate(req.params.id, req.body, {
       new: true,
     })
 
@@ -26,3 +36,5 @@ exports.UpdateOne = (Model: any) =>
       data: document,
     })
   })
+
+export default UpdateOne
