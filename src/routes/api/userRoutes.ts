@@ -2,6 +2,7 @@ import express from 'express'
 import {
   ChangeUserPassword,
   CreateUser,
+  DeleteUser,
   GetAllUser,
   GetUser,
   LoginUser,
@@ -37,6 +38,7 @@ UserRouter.route('/:id')
   .get(IdUserValidator, GetUser)
   .put(GeneralUploader, ResizeImages('users'), UpdateUserMiddleware, UpdateUser)
   .put(ChangeUserPasswordMiddleware, ChangeUserPassword)
+  .delete(IdUserValidator, DeleteUser)
 
 // User login ("auth")
 UserRouter.post('/login', LoginUser)

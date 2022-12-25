@@ -8,6 +8,7 @@ import bcrypt from 'bcrypt'
 import GenerateToken from '../helpers/generate_token'
 import SanitizeUser from '../sanitizers/user_sanitizer'
 import UpdateOne from '../helpers/update_one'
+import DeleteOne from '../helpers/delete_one'
 
 // @desc Login User
 // @route POST /api/v1/User
@@ -41,6 +42,11 @@ const ChangeUserPassword = UpdateOne(User, true)
 // @access Public/user
 const CreateUser = CreateOne(User)
 
+// @desc Delete User
+// @route Delete /api/v1/User
+// @access Protected/user
+const DeleteUser = DeleteOne(User)
+
 // @desc Update User
 // @route PUT /api/v1/User/:id
 // @access Public/user
@@ -62,4 +68,5 @@ export {
   LoginUser,
   UpdateUser,
   ChangeUserPassword,
+  DeleteUser,
 }

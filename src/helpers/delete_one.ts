@@ -16,8 +16,11 @@ const DeleteOne = (Model: any) =>
     }
     //Trigger remove event when we update
     await document.remove()
-    res.status(200).json({
-      message: `document Deleted Successfully`,
+    res.status(204).json({
+      status: req.t('successStatus'),
+      message: req.t('documentDeleted', {
+        name: Model.collection.collectionName,
+      }),
     })
   })
 
