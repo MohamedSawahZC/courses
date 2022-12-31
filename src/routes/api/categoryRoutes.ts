@@ -16,7 +16,7 @@ const CategoryRouter = express.Router()
 
 //@desc Our routes
 
-//Get All , Create User (Register)
+//Get All , Create category
 CategoryRouter.route('/')
   .post(
     Protect,
@@ -27,7 +27,7 @@ CategoryRouter.route('/')
   )
   .get(Protect, AllowedTo('admin'), GetAllCategory)
 
-//Get one user , Update user
+//Get one category , Update category
 CategoryRouter.route('/:id')
   .get(Protect, AllowedTo('admin'), GetCategory)
   .put(
