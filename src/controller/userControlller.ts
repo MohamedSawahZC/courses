@@ -72,6 +72,14 @@ const AddCourseToUser = asyncHandler(async (req: any, res, next) => {
   await user?.save()
 })
 
+const AddLectureToUser = asyncHandler(async (req: any, res, next) => {
+  const { id } = req.params.id
+  const { lecture } = req.body.lecture
+  const user = await User.findById(id)
+  user?.lectures.push(lecture);
+  await user?.save()
+})
+
 export {
   CreateUser,
   GetUser,
@@ -81,4 +89,5 @@ export {
   ChangeUserPassword,
   DeleteUser,
   AddCourseToUser,
+  AddLectureToUser,
 }
